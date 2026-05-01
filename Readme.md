@@ -96,6 +96,3 @@ This application solves that by providing a centralized system with **Admin and 
 - Overdue tasks
 
 ---
-
-## 🧱 Folder Structure
-git 
