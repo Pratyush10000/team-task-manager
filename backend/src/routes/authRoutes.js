@@ -237,17 +237,23 @@ router.post('/forgot-password', async (req, res) => {
     const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
     // respond immediately (no blocking)
-res.json({ message: 'If the account exists, a reset link was sent' });
+try {
+  await transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Reset your password',
+    html: `<p>Click this link to reset your password:</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
+  });
 
-// send email in background (non-blocking)
-transporter.sendMail({
-  from: process.env.EMAIL_USER,
-  to: email,
-  subject: 'Reset your password',
-  html: `<p>Click this link to reset your password:</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
-})
-.then(() => console.log("Reset email sent"))
-.catch(err => console.error("Email error:", err));
+  console.log("✅ Reset email sent");
+
+  res.json({ message: 'Reset link sent to your email' });
+
+} catch (err) {
+  console.error("❌ Email error:", err);
+
+  res.status(500).json({ error: 'Email sending failed. Check configuration.' });
+}
   } catch (error) {
     if (error.name === 'ZodError') {
       return res.status(400).json({ error: error.errors[0].message });
