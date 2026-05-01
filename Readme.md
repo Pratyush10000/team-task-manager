@@ -5,7 +5,7 @@ A production-ready full-stack web application to manage team projects, assign ta
 ---
 
 ## 🌐 Live Demo
-(Will add after deployment)
+https://team-task-manager-beta-opal.vercel.app/
 
 ---
 
