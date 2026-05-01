@@ -5,11 +5,14 @@
   "main": "src/index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
+    // "dev": "nodemon src/index.js",
+    // "start": "node src/index.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "seed": "node prisma/seed.js"
   }
 }
+
