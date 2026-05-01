@@ -226,12 +226,12 @@ router.post('/forgot-password', async (req, res) => {
       },
     });
 
-    const transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   host: "sandbox.smtp.mailtrap.io",
   port: 2525,
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
 });
 
